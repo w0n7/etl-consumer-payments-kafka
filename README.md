@@ -1,6 +1,6 @@
 # 🏦 Payment ETL Application
 
-![Java](https://img.shields.io/badge/Java-17-blue)
+![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)
 ![Python](https://img.shields.io/badge/Python-3.12-yellow)
 ![Kafka](https://img.shields.io/badge/Kafka-3.7-orange)
