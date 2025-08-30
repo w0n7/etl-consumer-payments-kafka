@@ -12,27 +12,23 @@
 
 ## 🌐 Visão Geral
 
-Essa aplicação demonstra um **pipeline de dados de pagamentos em tempo real**:
+Essa aplicação demonstra um **pipeline de pagamentos em tempo real**, integrando:
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/yourusername/assets/main/payment-etl-diagram.png" alt="Diagrama Arquitetural" width="700"/>
-</div>
+- **Spring Boot Producer** → gera pagamentos e publica no Kafka  
+- **Kafka** → mensageria confiável  
+- **ETL Python** → consome Kafka, converte datas para UTC e insere no Postgres  
+- **Postgres** → armazena os pagamentos  
+- **Grafana** → dashboards e métricas
 
-**Descrição do fluxo:**
-
-1. **Producer (Spring Boot)** gera pagamentos e publica no Kafka.
-2. **Kafka** atua como broker, garantindo entrega confiável.
-3. **ETL (Python)** consome, converte datas para UTC e insere no Postgres.
-4. **Postgres** armazena os pagamentos.
-5. **Grafana** exibe dashboards e métricas em tempo real.
+O fluxo garante **consistência de dados, escalabilidade e observabilidade**.
 
 ---
 
-## 🏗 Arquitetura com ícones
+## 🏗 Arquitetura
 
 ```mermaid
 flowchart LR
-    A["<img src='https://img.shields.io/badge/SpringBoot-Producer-blue?logo=springboot&logoColor=white' width='100'/>"] -->|JSON Payment| B["<img src='https://img.shields.io/badge/Kafka-Broker-orange?logo=apachekafka&logoColor=white' width='100'/>"]
-    B -->|Message| C["<img src='https://img.shields.io/badge/Python-ETL-yellow?logo=python&logoColor=white' width='100'/>"]
-    C -->|Insert| D["<img src='https://img.shields.io/badge/Postgres-DB-blue?logo=postgresql&logoColor=white' width='100'/>"]
-    D --> E["<img src='https://img.shields.io/badge/Grafana-Dashboard-red?logo=grafana&logoColor=white' width='100'/>"]
+    A[Spring Boot Producer] -->|JSON Payment| B[Kafka Broker]
+    B -->|Message| C[Python ETL Consumer]
+    C -->|Insert| D[Postgres DB]
+    D --> E[Grafana Dashboard]
